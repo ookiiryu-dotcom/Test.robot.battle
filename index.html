@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <title>Cyber Humanoid Prototype</title>
+  <link rel="stylesheet" href="./style.css" />
+
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js"
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <div id="startScreen">
+    <div class="start-panel">
+      <h1>HUMANOID RUNNER</h1>
+      <p>サイバー空間で敵ロボットと交戦します。</p>
+      <div class="best-score">BEST SCORE <strong id="titleBestScore">0</strong></div>
+      <div class="character-select" aria-label="キャラクター選択">
+        <button class="character-card is-selected" type="button" data-character="runner">
+          <span class="character-name">Runner</span>
+          <span class="character-detail">標準型ロボット</span>
+        </button>
+        <button class="character-card is-locked" type="button" data-character="heavy" disabled>
+          <span class="character-name">Heavy</span>
+          <span class="character-detail">Coming Soon</span>
+        </button>
+        <button class="character-card is-locked" type="button" data-character="scout" disabled>
+          <span class="character-name">Scout</span>
+          <span class="character-detail">Coming Soon</span>
+        </button>
+      </div>
+      <button id="startButton" type="button">START</button>
+    </div>
+  </div>
+
+  <div id="hud">
+    <div class="hud-main">
+      <strong class="hud-logo">HUMANOID RUNNER</strong>
+      <div class="hud-stat">
+        <span>HP</span>
+        <strong id="playerHpText">100/100</strong>
+      </div>
+      <div class="hp-bar hud-hp"><div id="playerHpFill" class="hp-fill player"></div></div>
+      <div class="hud-stat">
+        <span>LIVES</span>
+        <strong id="livesText">3</strong>
+      </div>
+      <div class="hud-stat">
+        <span>SCORE</span>
+        <strong id="scoreText">0</strong>
+      </div>
+      <div class="hud-stat">
+        <span>MODE</span>
+        <strong id="modeText">READY</strong>
+      </div>
+      <button id="pauseButton" type="button">PAUSE</button>
+    </div>
+    <div id="enemyHpList" class="enemy-strip"></div>
+    <div id="status" class="debug-status" hidden>読み込み中...</div>
+  </div>
+
+  <div id="centerMessage">
+    <div class="box">
+      <h1>Click to Start</h1>
+      <p>画面をクリックするとマウス視点操作になります。</p>
+      <p>Escで解除できます。</p>
+    </div>
+  </div>
+
+  <div id="crosshair"></div>
+
+  <div id="mobileControls">
+    <div id="moveStick" class="move-stick" aria-label="移動スティック">
+      <div class="stick-ring">
+        <div id="stickKnob" class="stick-knob"></div>
+      </div>
+    </div>
+
+    <div class="actions" aria-label="アクションボタン">
+      <button class="btn action-jump" type="button" data-input="jump">JUMP</button>
+      <button class="btn action-dash" type="button" data-input="sprint">DASH</button>
+      <button class="btn action-shield" type="button" data-input="shield">SHIELD</button>
+      <div class="system-actions">
+        <button class="btn is-small" type="button" data-action="pause">PAUSE</button>
+        <button class="btn is-small" type="button" data-action="reset">RESET</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="pauseOverlay" class="menu-overlay" hidden>
+    <div class="menu-panel">
+      <h2>PAUSED</h2>
+      <p>一時停止中です。</p>
+      <button id="resumeButton" type="button">RESUME</button>
+    </div>
+  </div>
+
+  <div id="resultScreen" class="menu-overlay" hidden>
+    <div class="menu-panel">
+      <h2>GAME OVER</h2>
+      <p>FINAL SCORE <strong id="finalScoreText">0</strong></p>
+      <p>BEST SCORE <strong id="resultBestScoreText">0</strong></p>
+      <button id="retryButton" type="button">TITLE</button>
+    </div>
+  </div>
+
+  <div id="rotateOverlay">
+    <div class="panel">
+      <h2>横画面にしてください</h2>
+      <p>スマホでは横向きでプレイできます。画面を横にするか、ここをタップして横向き固定を試してください。</p>
+    </div>
+  </div>
+
+  <script type="module" src="./main.js"></script>
+</body>
+</html>
